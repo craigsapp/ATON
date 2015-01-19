@@ -44,14 +44,14 @@ JavaScript object:
 ATON Content is converted from a string into a JavaScript object
 with the `.parse()` method.  The process can be reversed by using the
 `.stringify()` method.  Nested properties can be represented by enclosing
-them in the meta tags `@@START: property-name` and `@@END: property-name`:
+them in the meta tags "`@@START: property-name`" and "`@@END: property-name`":
 
 <center>
 <table style="with:450px;;">
 <tr valign=top>
 <td style="margin:10px;">
 ATON file:
-<pre style="height:100px;">
+<pre style="height:150px;">
 @key1: value1
 @@START: value2
 @key2a: value2a
@@ -64,7 +64,7 @@ ATON file:
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object:
-<pre style="height:100px;">
+<pre style="height:150px;">
 {
    key1: "value1",
    key2: 
