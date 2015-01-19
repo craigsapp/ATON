@@ -18,7 +18,7 @@ value, which may extend across multiple lines of text until the next
 <table style="with:450px;;">
 <tr valign=top>
 <td style="margin:10px;">
-ATON file:
+ATON
 <pre style="height:100px;">
 @key1: value1
 @key2: value2
@@ -28,7 +28,7 @@ line2 of value2
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object:
+JavaScript object
 <pre style="height:100px;">
 {
    key1: "value1",
@@ -40,17 +40,20 @@ JavaScript object:
 </table>
 </center>
 
-
 ATON Content is converted from a string into a JavaScript object
 with the `.parse()` method.  The process can be reversed by using the
-`.stringify()` method.  Nested properties can be represented by enclosing
+`.stringify()` method.  
+
+### Nested properties
+
+Nested properties can be represented by enclosing
 them in the meta tags "`@@START: property-name`" and "`@@END: property-name`":
 
 <center>
 <table style="with:450px;;">
 <tr valign=top>
 <td style="margin:10px;">
-ATON file:
+ATON
 <pre style="height:170px;">
 @key1: value1
 @@START: key2
@@ -63,7 +66,7 @@ ATON file:
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object:
+JavaScript object
 <pre style="height:170px;">
 {
    key1: "value1",
@@ -85,6 +88,47 @@ In addition `@@BEGIN:` is an alias for `@@START:`, and `@@STOP:` is an
 alias for `@@END:`. Ending meta tags may optionally repeat the property name.  
 If so, then the name will be checked against the opening name, and an error 
 will be generated if they do not match.  If the file ends without a matching `@@END:` tag, it will be inserted automatically.
+
+
+### Property arrays
+
+If a property name is repeated at any object level, then the individual
+values from multiple entries with the same name will be collected into
+an array:
+
+<center>
+<table style="with:450px;;">
+<tr valign=top>
+<td style="margin:10px;">
+ATON
+<pre style="height:170px;">
+@key1: value1
+@key2: value2a
+@key2: value2b
+@key3: value3
+@key2: value2c
+</pre>
+</td>
+<td style="width:50px;"></td>
+<td style="margin:10px;">
+JavaScript object
+<pre style="height:170px;">
+{
+   key1: "value1",
+   key2: 
+   [
+      "value2a",
+      "value2b",
+      "value2c"
+   ]
+   key3: "value3"
+}
+</td>
+</tr>
+</table>
+</center>
+
+
 
 ## Online example
 
