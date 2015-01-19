@@ -14,7 +14,7 @@ followed by the property name, then a colon (:) and then the property
 value.  Here is a simple example of an ATON file:
 
 <center>
-<table>
+<table style="border:0 !important;">
 <tr valign=top>
 <td style="margin:10px;">
 ATON file:
