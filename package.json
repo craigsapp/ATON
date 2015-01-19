@@ -1,0 +1,29 @@
+{
+  "name": "aton",
+  "version": "0.0.0",
+  "description": "AT Object Notation",
+  "author": "Craig Stuart Sapp <craig@ccrma.stanford.edu>",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:craigsapp/ATON.git"
+  },
+  "keywords": [
+    "AT object notation",
+    "aton",
+    "json-like",
+    "object notation"
+  ],
+  "bugs": {
+    "url": "https://github.com/craigsapp/ATON/issues"
+  },
+  "homepage": "http://aton.sapp.org",
+  "license": "MIT",
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

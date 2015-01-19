@@ -1,0 +1,15 @@
+@@type:key3c:Integer
+@@type:key3b:Number
+@key1: value1
+@key2: value2
+value2 continued
+@@begin: key3
+@key3a: value3a
+value3a continued
+value3a continued further
+@key3b: 2.71828
+@key3c: 1
+@key3c: -45
+@key3c: 3.14
+@@end: 
+@key4: value4

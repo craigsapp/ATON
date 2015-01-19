@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ATON example usage</title>
+
+<script src="../../lib/aton.js"></script>
+<script>
+   document.addEventListener("DOMContentLoaded", function (event) {
+      updateJSON()
+      var atonelem = document.querySelector('#aton');
+      atonelem.addEventListener("keyup", updateJSON);
+   });
+
+   var aton = new ATON;
+   function updateJSON() {
+      var atonelem = document.querySelector('#aton');
+      var jsonelem = document.querySelector('#json');
+      var atonstring = atonelem.value;
+      var jsonstring = "";
+      try {
+         jsonstring = aton.parse(atonstring);
+         jsonelem.value = JSON.stringify(jsonstring);
+         var status = document.getElementById('atonstatus');
+         status.style.color = "green";
+	 status.innerHTML = "&#10004;";
+      } catch(error) {
+         console.log("TYPE OF aton:", typeof aton);
+         console.log("TYPE OF ATON.parse:", typeof aton.parse);
+         console.log("Invalid ATON string:", error);
+         var status = document.getElementById('atonstatus');
+         status.style.color = "red";
+	 status.innerHTML = "&#10008;";
+      }
+   }
+</script>
+
+<style type="text/css">
+   section {
+      margin-left: 100px;
+      margin-top: 50px;
+      width: 600px;
+   }
+   section h1 {
+      font-size: 200%;
+      font-family: sans-serif;
+      color: #dc0;
+   }
+</style>
+
+</head>
+<body>
+
+<section>
+<h1>ATON to JSON test</h1>
+
+<p> Type some ATON content on the left, and it will be displayed
+in JSON format on the right. A check mark after the ATON heading
+indicates that the ATON content is well-formed.  A red &#10008;
+indicates a syntax error.
+
+<table>
+<tr>
+<td>
+<center><b>ATON</b> <span id=atonstatus></span></center>
+<textarea rows=20 cols=40 id=aton>@@type:key3c:Integer
+@@type:key3b:Number
+@key1: value1
+@key2: value2
+value2 continued
+@@begin: key3
+@key3a: value3a
+value3a continued
+value3a continued further
+@key3b: 2.71828
+@key3c: 1
+@key3c: -45
+@key3c: 3.14
+@@end: 
+@key4: value4</textarea>
+</td>
+<td>
+<center><b>JSON</b></center>
+<textarea readonly rows=20 cols=40 id=json></textarea>
+</td>
+</tr>
+</table>
+
+</section>
+
+</body>
+</html>

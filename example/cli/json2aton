@@ -1,0 +1,154 @@
+#!/usr/bin/env node
+//
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Sun Jan 18 14:43:04 PST 2015
+// Last Modified: Sun Jan 18 14:57:16 PST 2015
+// Filename:      .../example/cli/json2aton
+// Syntax:        JavaScript 1.8.5/ECMAScript 5.1; node.js
+// vim:           ts=3: ft=javascript
+//
+// Description:   Example command-line interface for the ATON
+//                object. This program will convert JSON files into 
+//                ATON files.
+//
+// Usage:         ./json2aton file.json > file.aton
+//                cat file.json | ./json2aton > file.aton
+//
+// If the above examples do not run, then try something like this on the
+// command line to set the location of the required modules:
+//    export NODE_PATH=/usr/local/lib/node_modules
+// You also have to install node first (http://nodejs.org), and then install
+// the ATON module in node.  After installing node, run this command to 
+// install the ATON module:
+//    npm install -g aton
+// Also the command-line argument parser posix-argv-parser is required:
+//    npm install -g posix-argv-parser
+//
+
+'use strict';
+
+var aton  = require('aton');
+var pap   = require('posix-argv-parser');
+var fs    = require('fs');
+
+
+//////////////////////////////
+//
+// Process command-line arguments, then read data from files or standard
+//  input if no files.
+//
+
+(function processCommandLineArguments() {
+	var args = pap.create();
+	var v    = pap.validators;
+
+	args.createOperand('files', {
+		signature: 'input files',
+		greedy: true,
+		validators: [v.file()]
+	});
+
+	args.parse(process.argv.slice(2), function (errors, options) {
+		if (errors) {
+			console.log(errors[0]);
+			process.exit(1);
+		}
+		var myoptions = {
+			files  : options.files.value
+		};
+		runCommand(myoptions);
+	});
+})();
+
+
+
+//////////////////////////////
+//
+// runCommand -- Do all of the work after command-line arguments 
+//    have been parsed.
+//
+
+function runCommand(options) {
+   if (options.files.length) {
+      processFileList(options.files, options);
+   } else {
+      processStandardInput(options);
+   }
+}
+
+
+//////////////////////////////
+//
+// processStandardInput -- read text data for an ATON file from standard
+//    input.  This implementation reads all of the file into memory before
+//    processing.  Eventually the ATON parse will be adjusted so that the
+//    standard input or a file can be processed line-by-line without 
+//    storing completely in memory before starting to parse it.
+//
+
+function processStandardInput(options) {
+   var inputChunks = [];  // Temporary storage of incoming data packets.
+   process.stdin.setEncoding('utf8');  // Be careful if not using utf-8 
+													// encoding in the file.
+
+   process.stdin.on('data', function (chunk) {
+      inputChunks.push(chunk);
+   });
+
+   process.stdin.on('end', function () {
+      var outputData = inputChunks.join('');
+      processFileContents(outputData, options);
+   });
+}
+
+
+
+//////////////////////////////
+//
+// processFileList -- loop through the input file list, converting them
+//   one at a time.
+//
+
+function processFileList(filelist, options) {
+   for (var i=0; i<filelist.length; i++) {
+      processFile(filelist[i], options);
+   }
+}
+
+
+
+//////////////////////////////
+//
+// processFile -- process a single file from the comman-line arguments.
+//    This implementation reads all of the file into memory before
+//    processing.  Eventually the ATON parse will be adjusted so that
+//    standard input or a file can be processed line-by-line without 
+//    storing completely in memory before starting to parse it.
+//
+
+function processFile(filename, options) {
+   try {
+      var data = fs.readFileSync(filename, 'utf8');
+   } catch (error) {
+      console.error('ERROR:', error.message);
+      process.exit(1);
+   }
+   processFileContents(data, options);
+}
+
+
+
+//////////////////////////////
+//
+// processFileContents -- process the contents of a file (or standard input).
+//
+
+function processFileContents(data, options) {
+	var object = JSON.parse(data);
+	var ATON = new aton;
+	var atonstring = ATON.stringify(object);
+	console.log(atonstring);
+}
+
+
+
