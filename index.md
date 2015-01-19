@@ -16,17 +16,17 @@ value.  Here is a simple example of an ATON file:
 <center>
 <table>
 <tr valign=top>
-<td>
+<td style="margin:10px;">
 ATON file:
-<pre>
+<pre style="height:100px;">
 @key1: value1
 @key2: value2
 @key3: value3
 </pre>
 </td>
-<td>
+<td style="margin:10px;">
 JavaScript object:
-<pre>
+<pre style="height:100px;">
 {
    key1: "value1",
    key2: "value2",
