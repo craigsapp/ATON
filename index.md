@@ -51,20 +51,20 @@ them in the meta tags "`@@START: property-name`" and "`@@END: property-name`":
 <tr valign=top>
 <td style="margin:10px;">
 ATON file:
-<pre style="height:150px;">
+<pre style="height:170px;">
 @key1: value1
-@@START: value2
+@@START: key2
 @key2a: value2a
 @key2b: value2b
 @key2c: value2c
-@@END: value2
+@@END: key2
 @key3: value3
 </pre>
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object:
-<pre style="height:150px;">
+<pre style="height:170px;">
 {
    key1: "value1",
    key2: 
@@ -79,6 +79,12 @@ JavaScript object:
 </tr>
 </table>
 </center>
+
+Meta tags such as `@@START:` are case insenstive, so `@@start:` is equivalent.
+In addition `@@BEGIN:` is an alias for `@@START:`, and `@@STOP:` is an
+alias for `@@END:`. Ending meta tags may optionally repeat the property name.  
+If so, then the name will be checked against the opening name, and an error 
+will be generated if they do not match.  If the file ends without a matching `@@END:` tag, it will be inserted automatically.
 
 ## Online example
 
@@ -175,11 +181,12 @@ a number and "Integer" to parse as an integer.
 ## Command-line
 
 There are two command-line interfaces to the ATON code:
+
 * [aton2json](https://github.com/craigsapp/ATON/blob/master/example/cli/aton2json) &mdash; converts ATON files into JSON files.
 * [json2aton](https://github.com/craigsapp/ATON/blob/master/example/cli/json2aton) &mdash; converts JSON files into ATON files.
 
-The input data can be piped into the programs, or can be given through 
-a filename in the command-line arguments:
+The input data can be piped into the programs, or it can be given through 
+a filename in the command-line arguments list:
 
 ``` bash
 aton2json file.aton > file.json
@@ -196,8 +203,6 @@ a webpage by including the main JavaScript file for ATON:
 <script src="aton.js"></script>
 ```
 
-Visit the [ATON homepage](http://aton.sapp.org) to try an online
-demo of ATON parser running within a webpage.
 
 
 ## Testing
@@ -210,14 +215,5 @@ directory.  To test from a node installation:
 $ npm install   # to download mocha dependency if necessary
 $ npm test
 ```
-
-
-## Website
-
-The website for ATON documentation is
-[http://aton.sapp.org](http://aton.sapp.org).
-
-And the corresponding GitHub repository is
-[https://github.com/craigsapp/aton](https://github.com/craigsapp/aton).
 
 
