@@ -121,7 +121,7 @@ value3a continued further
   key2: 'value2\nvalue2 continued',
   key3:
    { key3a: 'value3a\nvalue3a continued\nvalue3a continued further',
-     key3b: 'value3b',
+     key3b: 2.71828,
      key3c: [ 1, -45, 3 ] },
   key4: 'value4' }
 ```
