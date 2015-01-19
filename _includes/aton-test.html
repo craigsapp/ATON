@@ -13,7 +13,7 @@
       var jsonstring = "";
       try {
          jsonstring = aton.parse(atonstring);
-         jsonelem.value = JSON.stringify(jsonstring);
+         jsonelem.value = JSON.stringify(jsonstring, null, '   ');
          var status = document.getElementById('atonstatus');
          status.style.color = "green";
 	 status.innerHTML = "&#10004;";

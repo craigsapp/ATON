@@ -7,29 +7,32 @@ ATON
 ===============
 
 ATON stands for "AT Object Notation."  It functions in a similar
-manner to JSON, the main difference is that property values are
+manner to JSON, the main difference being that property values are
 allowed to contain un-escaped line breaks in ATON property values.
 Property keys are indicated by starting a line with the "@" symbol,
 followed by the property name, then a colon (:) and then the property
-value.  Here is a simple example of an ATON file:
+value, which may extend across multiple lines of text until the next
+@ marker at the start of a line.  Here is a simple example of an ATON file:
 
 <center>
-<table style="border:0 !important;">
+<table style="with:450px;;">
 <tr valign=top>
 <td style="margin:10px;">
 ATON file:
 <pre style="height:100px;">
 @key1: value1
 @key2: value2
+line2 of value2
 @key3: value3
 </pre>
 </td>
+<td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object:
 <pre style="height:100px;">
 {
    key1: "value1",
-   key2: "value2",
+   key2: "value2\nline2 of value2",
    key3: "value3"
 }
 </td>
@@ -40,7 +43,42 @@ JavaScript object:
 
 ATON Content is converted from a string into a JavaScript object
 with the `.parse()` method.  The process can be reversed by using the
-`.stringify()` method.
+`.stringify()` method.  Nested properties can be represented by enclosing
+them in the meta tags `@@START: property-name` and `@@END: property-name`:
+
+<center>
+<table style="with:450px;;">
+<tr valign=top>
+<td style="margin:10px;">
+ATON file:
+<pre style="height:100px;">
+@key1: value1
+@@START: value2
+@key2a: value2a
+@key2b: value2b
+@key2c: value2c
+@@END: value2
+@key3: value3
+</pre>
+</td>
+<td style="width:50px;"></td>
+<td style="margin:10px;">
+JavaScript object:
+<pre style="height:100px;">
+{
+   key1: "value1",
+   key2: 
+   {
+      key2a: "value2a",
+      key2b: "value2b",
+      key2c: "value2c"
+   }
+   key3: "value3"
+}
+</td>
+</tr>
+</table>
+</center>
 
 ## Online example
 
@@ -49,7 +87,7 @@ with the `.parse()` method.  The process can be reversed by using the
 
 ## Usage in Node applications
 
-This module can be installed for use in [node](http://nodejs.org) by
+The ATON module can be installed for use in [node](http://nodejs.org) by
 installing globally with the command:
 
 ``` bash
@@ -126,12 +164,27 @@ value3a continued further
   key4: 'value4' }
 ```
 
-Whitespace before an after a parameter value is removed automatically
-during the conversion process.  Also notice that multi-line values
-contain an escaped newline character in the translation to a
-JavaScript object. Meta entries starting with "@@TYPE" set the data
-type for parameters with a given name, such as "Number" to parse the
-property value as a number and "Integer" to parse as an integer.
+Whitespace before and after a parameter value is removed automatically
+during parsing.  Also notice that multi-line values contain an
+escaped newline character in the translation to a JavaScript object.
+Meta entries starting with "@@TYPE" set the data type for parameters
+with a given name, such as "Number" to parse the property value as
+a number and "Integer" to parse as an integer.
+
+
+## Command-line
+
+There are two command-line interfaces to the ATON code:
+* [aton2json](https://github.com/craigsapp/ATON/blob/master/example/cli/aton2json) &mdash; converts ATON files into JSON files.
+* [json2aton](https://github.com/craigsapp/ATON/blob/master/example/cli/json2aton) &mdash; converts JSON files into ATON files.
+
+The input data can be piped into the programs, or can be given through 
+a filename in the command-line arguments:
+
+``` bash
+aton2json file.aton > file.json
+cat file.json | json2aton
+```
 
 
 ## Browser
