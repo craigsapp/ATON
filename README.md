@@ -19,7 +19,6 @@ ATON file:
 @key3: value3
 </pre>
 </td>
-<td width=200></td>
 <td>
 JavaScript object:
 <pre>
@@ -70,21 +69,21 @@ var aton = require('aton');
 var ATON = new aton();
 
 var atonString = '';
-atonString += '@@type:key3c:Integer\n";
-atonString += '@@type:key3b:Number\n";
-atonString += '@key1: value1\n";
-atonString += '@key2: value2\n";
-atonString += 'value2 continued\n";
-atonString += '@@begin: key3\n";
-atonString += '@key3a: value3a\n";
-atonString += 'value3a continued\n";
-atonString += 'value3a continued further\n";
-atonString += '@key3b: 2.71828\n";
-atonString += '@key3c: 1\n";
-atonString += '@key3c: -45\n";
-atonString += '@key3c: 3.14\n";
-atonString += '@@end: value3\n";
-atonString += '@key4: value4\n";
+atonString += '@@type:key3c:Integer\n';
+atonString += '@@type:key3b:Number\n';
+atonString += '@key1: value1\n';
+atonString += '@key2: value2\n';
+atonString += 'value2 continued\n';
+atonString += '@@begin: key3\n';
+atonString += '@key3a: value3a\n';
+atonString += 'value3a continued\n';
+atonString += 'value3a continued further\n';
+atonString += '@key3b: 2.71828\n';
+atonString += '@key3c: 1\n';
+atonString += '@key3c: -45\n';
+atonString += '@key3c: 3.14\n';
+atonString += '@@end: value3\n';
+atonString += '@key4: value4\n';
 console.log(atonString);
 var obj = ATON.parse(atonString);
 console.log('\n', obj);
@@ -123,12 +122,12 @@ during the conversion process.  Also notice that multi-line values
 contain an escaped newline character in the translation to a
 JavaScript object. Meta entries starting with "@@TYPE" set the data
 type for parameters with a given name, such as "Number" to parse the
-propery value as a number and "Integer" to parse as an integer.
+property value as a number and "Integer" to parse as an integer.
 
 
 ## Browser
 
-The JavaScript files for RationalNumber can also be used within
+The JavaScript files for ATON can also be used within
 a webpage by including the main JavaScript file for ATON:
 
 ``` HTML
