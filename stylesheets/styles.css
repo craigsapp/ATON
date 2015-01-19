@@ -19,7 +19,7 @@ body {
 }
 
 .wrapper {
-  width: 640px;
+  width: 750px;
   margin: 0 auto;
   background: #DEDEDE;
   -webkit-border-radius: 8px;
@@ -34,6 +34,11 @@ body {
 
 header, section, footer {
   display: block;
+}
+
+header ul {
+	margin-top: 25px !important;
+	margin-right: 10px;
 }
 
 a {
@@ -57,7 +62,7 @@ header {
   -ms-border-radius: 8px 8px 0 0;
   -o-border-radius: 8px 8px 0 0;
   border-radius: 8px 8px 0 0;
-  background: #C6EAFA;
+  background: #C5EAFA;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ddfbfc), color-stop(100%, #c6eafa));
   background: -webkit-linear-gradient(#ddfbfc, #c6eafa);
   background: -moz-linear-gradient(#ddfbfc, #c6eafa);
@@ -65,13 +70,17 @@ header {
   background: -ms-linear-gradient(#ddfbfc, #c6eafa);
   background: linear-gradient(#ddfbfc, #c6eafa);
   position: relative;
-  padding: 15px 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 25px;
+  padding-right: 25px;
   border-bottom: 1px solid #B2D2E1;
 }
 header h1 {
   margin: 0;
   padding: 0;
   font-size: 24px;
+  letter-spacing: 3px;
   line-height: 1.2;
   color: #069;
   text-shadow: rgba(255, 255, 255, 0.9) 0 1px 0;
@@ -147,11 +156,13 @@ header ul li {
 header ul li.single {
   border: none;
 }
-header ul li + li {
+header ul li + li,
+header ul li + li + li
+ {
   width: 78px;
   border-left: 1px solid #8BBEF3;
 }
-header ul li + li + li {
+header ul li + li + li + li {
   border-right: none;
   width: 79px;
 }
@@ -172,6 +183,13 @@ header ul a strong {
   display: block;
   color: #fff;
   -webkit-font-smoothing: antialiased;
+}
+
+body section:first-child {
+  padding-top: 40px;
+}
+section p:first-child {
+  padding-top: 30px;
 }
 
 section {
@@ -212,6 +230,7 @@ h1 {
 }
 
 h2 {
+  margin-top: 50px !important;
   color: #393939;
 }
 
@@ -343,6 +362,7 @@ footer p + p {
 
   header p.view {
     display: block;
+    padding-top: 20px;
   }
 
   header p {
