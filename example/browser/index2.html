@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ATON example usage #2</title>
+
+<script src="aton.js"></script>
+<script>
+
+	document.addEventListener('DOMContentLoaded', function (event) {
+		loadAtonFile('test.aton');
+	});
+
+	function loadAtonFile(filename) {
+		if (!window.XMLHttpRequest) {
+			console.log('Browser is too old');
+			return;
+		}
+		// https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+		var request = new XMLHttpRequest();
+		request.open('GET', filename, true);
+		request.addEventListener('load', function () {
+			displayData(this.responseText);
+		});
+		request.addEventListener('error', function() {
+			console.error(this.statusText);
+		});
+		request.send(null);
+	}
+
+	function displayData(content) {
+		var atonelem = document.querySelector('#aton');
+		if (atonelem) {
+			atonelem.value = content;
+			updateJSON();
+		}
+	}
+
+	function updateJSON() {
+		var aton = new ATON;
+		var atonelem = document.querySelector('#aton');
+		var jsonelem = document.querySelector('#json');
+		var atonstring = atonelem.value;
+		var jsonstring = '';
+		try {
+			jsonstring = aton.parse(atonstring);
+			jsonelem.value = JSON.stringify(jsonstring, null, '   ');
+			var status = document.getElementById('atonstatus');
+			status.style.color = 'green';
+			status.innerHTML = '&#10004;';
+		} catch(error) {
+			console.log('TYPE OF aton:', typeof aton);
+			console.log('TYPE OF ATON.parse:', typeof aton.parse);
+			console.log('Invalid ATON string:', error);
+			var status = document.getElementById('atonstatus');
+			status.style.color = 'red';
+			status.innerHTML = '&#10008;';
+		}
+	}
+</script>
+
+<style type="text/css">
+   section {
+      margin-left: 100px;
+      margin-top: 50px;
+      width: 600px;
+   }
+   section h1 {
+      font-size: 200%;
+      font-family: sans-serif;
+      color: #dc0;
+   }
+</style>
+
+</head>
+<body>
+
+<section>
+<h1>ATON to JSON: reading from server</h1>
+
+<p> This example demonstrates how to read an ATON file from the
+server and then convert it into a JavaScript object as well as a JSON
+string.  The textarea on the left should contain the read ATON
+content, and the textarea on the right should contain a conversion
+into JSON.  To run this example, place aton.js in the same directory
+and host from a server (cannot be run directly from local directory
+without an intermediate server due to the same-origin policy).
+
+<table>
+<tr>
+<td>
+<center><b>ATON</b> <span id=atonstatus></span></center>
+<textarea readonly rows=20 cols=40 id=aton></textarea>
+</td>
+<td>
+<center><b>JSON</b></center>
+<textarea readonly rows=20 cols=40 id=json></textarea>
+</td>
+</tr>
+</table>
+
+</section>
+
+</body>
+</html>
