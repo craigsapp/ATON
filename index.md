@@ -247,6 +247,29 @@ a webpage by including the main JavaScript file for ATON:
 <script src="aton.js"></script>
 ```
 
+### Reading a file from the server
+
+Here is an example of how to read an ATON file from the sever and parse
+into a JavaScript object:
+
+``` javascript
+function loadAtonFile(filename) {
+   var request = new XMLHttpRequest();
+   request.open('GET', filename);
+   request.addEventListener('load', function () {
+      var atondata = this.responseText;
+      console.log("ATON data:", atondata);
+      var aton = new ATON;
+      console.log("JavaScript object:", aton.parse(atondata));
+   });
+   request.addEventListener('error', function() {
+      console.error(this.statusText);
+   });
+   request.send();
+}
+
+```
+
 
 
 ## Testing
