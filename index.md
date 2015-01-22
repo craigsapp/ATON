@@ -244,7 +244,7 @@ The [source code for ATON](https://github.com/craigsapp/ATON/blob/master/lib/ato
 can be used in a web browser as well as in node.  A 
 [makefile](https://github.com/craigsapp/ATON/blob/master/lib/Makefile) in the
 [lib](https://github.com/craigsapp/ATON/tree/master/lib) directory also shows how to create a [minified version of the
-code](http://aton.sapp.org/javascripts/aton-0.0.0.min.js).
+code](http://aton.sapp.org/javascripts/aton.min.js).
 
 The JavaScript files for ATON can also be used within
 a webpage by including the main JavaScript file for ATON:
