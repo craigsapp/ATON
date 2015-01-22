@@ -43,7 +43,8 @@ header ul {
 }
 
 a {
-  color: #069;
+  /* color: #069; */
+  color: #960;
   text-decoration: none;
 }
 
@@ -63,19 +64,31 @@ header {
   -ms-border-radius: 8px 8px 0 0;
   -o-border-radius: 8px 8px 0 0;
   border-radius: 8px 8px 0 0;
-  background: #C5EAFA;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ddfbfc), color-stop(100%, #c6eafa));
+  /* background: #C5EAFA; light blue */
+  background: #fff6ae; /* light yellow */
+/* background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ddfbfc), color-stop(100%, #c6eafa)); */
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ddfbfc), color-stop(100%, #ffefae));
+
+/*
   background: -webkit-linear-gradient(#ddfbfc, #c6eafa);
   background: -moz-linear-gradient(#ddfbfc, #c6eafa);
   background: -o-linear-gradient(#ddfbfc, #c6eafa);
   background: -ms-linear-gradient(#ddfbfc, #c6eafa);
   background: linear-gradient(#ddfbfc, #c6eafa);
+*/
+  background: -webkit-linear-gradient(#ddfbfc, #ffefae);
+  background: -moz-linear-gradient(#ddfbfc, #ffefae);
+  background: -o-linear-gradient(#ddfbfc, #ffefae);
+  background: -ms-linear-gradient(#ddfbfc, #ffefae);
+  background: linear-gradient(#ddfbfc, #ffefae);
+
   position: relative;
   padding-top: 40px;
   padding-bottom: 40px;
   padding-left: 25px;
   padding-right: 25px;
-  border-bottom: 1px solid #B2D2E1;
+  /* border-bottom: 1px solid #B2D2E1; */
+  border-bottom: 1px solid #E1D2B2;
 }
 header h1 {
   margin: 0;
@@ -83,7 +96,8 @@ header h1 {
   font-size: 24px;
   letter-spacing: 3px;
   line-height: 1.2;
-  color: #069;
+  /* color: #069; */
+  color: #960;
   text-shadow: rgba(255, 255, 255, 0.9) 0 1px 0;
 }
 header.without-description h1 {
@@ -91,7 +105,8 @@ header.without-description h1 {
 }
 header p {
   margin: 0;
-  color: #61778B;
+ /* color: #61778B; */
+  color: #8B7761;
   width: 300px;
   font-size: 13px;
 }
@@ -102,7 +117,8 @@ header p.view {
   -webkit-font-smoothing: antialiased;
 }
 header p.view a {
-  color: #06c;
+/*  color: #06c; */
+  color: #c60;
 }
 header p.view small {
   font-weight: 400;
@@ -151,7 +167,8 @@ header ul:before {
 header ul li {
   width: 79px;
   float: left;
-  border-right: 1px solid #3A7CBE;
+/*  border-right: 1px solid #3A7CBE; */
+  border-right: 1px solid #BE7C3A;
   height: 38px;
 }
 header ul li.single {
@@ -161,7 +178,8 @@ header ul li + li,
 header ul li + li + li
  {
   width: 78px;
-  border-left: 1px solid #8BBEF3;
+  /* border-left: 1px solid #8BBEF3; */
+  border-left: 1px solid #F3BE8B;
 }
 header ul li + li + li + li {
   border-right: none;
