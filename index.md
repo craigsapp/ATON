@@ -7,14 +7,11 @@ layout: index
 **ATON** stands for "AT Object Notation."  It has similar functionality
 to [JSON](http://en.wikipedia.org/wiki/JSON), with the main difference
 being that ATON property values are allowed to contain UN-escaped
-line breaks.
-
-Property names are indicated by starting a line with the "@" symbol,
-followed by the property name and then a colon (:). Property values
-follow the colon and may span multiple lines until the next property
-name or control message is found.
-
-Here is a simple example of an ATON file:
+line breaks.  Property names are indicated by starting a line with
+the "@" symbol, followed by the property name and then a colon (:).
+Property values follow the colon and may span multiple lines until
+the next property name or control message is found.  Here is a
+simple example of an ATON file with three key/value pairs:
 
 <center>
 <table style="with:450px;">
@@ -25,7 +22,7 @@ ATON
 @key1: value1
 @key2: value2
 line2 of value2
-
+ 
 @key3: value3
 </pre>
 </td>
@@ -43,7 +40,7 @@ JavaScript object
 </table>
 </center>
 
-Notice that whitespace before and after the property value is
+Notice that any whitespace before or after a property value is
 automatically remove when parsing into a JavaScript object.  This
 can allow visual separation and grouping of parameters with blank
 lines as in the above example.  ATON strings are converted into a
@@ -55,10 +52,10 @@ be reversed by using the `ATON.stringify()` method.
 ### Nested property lists
 
 Property values can themselves contain recursive lists of properties.
-The control tags "`@@START: *property-name*`" and "`@@END: *property-name*`"
+The control tags "`@@START: property-name`" and "`@@END: property-name`"
 is used to indicate the beginning and ending points of the property list.
-In the following example, the "key2" property has a value which itself
-is a list of properties whose keys are "key2a", "key2b" and "key2c".
+In the following example, the "`key2`" property has a value which itself
+is a list of properties whose keys are "`key2a`", "`key2b`" and "`key2c`".
 
 <center>
 <table style="with:450px;">
@@ -94,19 +91,19 @@ JavaScript object
 </table>
 </center>
 
-Control tags such as `@@START:` are case insensitive, so `@@start:`
-is equivalent.  In addition `@@BEGIN:` is an alias for `@@START:`,
-and `@@STOP:` is an alias for `@@END:`. Property names in ending
+Control tags such as "`@@START:`" are case insensitive, so "`@@start:`"
+is equivalent.  In addition "`@@BEGIN:`" is an alias for "`@@START:`",
+and "`@@STOP:`" is an alias for "`@@END:`". Property names in ending
 control tags are optional: including them will force a check to
 ensure that the closing tag matches to an opening tag with the same
-name.  If the file ends without a matching `@@END:` tag, it will
+name.  If the file ends without a matching "`@@END:`" tag, it will
 be inserted automatically.
 
 
 
 ### Property value arrays
 
-If a property name is repeated in a specific object level, then the
+If a property name is repeated on a specific object level, then the
 individual values from multiple entries with the same property name
 will be collected into a single array:
 
@@ -182,11 +179,64 @@ The control name "TYPE" and the data types "Number" and "Integer"
 are case insensitive.  The case of the property tag must match that
 of the property name to which the type conversion will be applied.
 The type messages will (currently) act on properties at any
-hierarchical level.  You can change the typecast by inserting a
-type control message before any properties.  To cancel typecasting
+hierarchical level.  You can change the type-cast by inserting a
+type control message before any properties.  To cancel type-casting
 of a particular parameter name, use the control message
 "`@@TYPE:tag:String`".
 
+
+### Comments
+
+Comments are lines which start with "`@`" but are not property names
+or control messages.  The "`@`" character should be followed by a
+space or at least three more "`@`" characters.  In addition, any
+free text following a control message line will be treated as a
+comment.  Any free text after a comment is also a comment.  In other
+words, comments and control messages cannot be interleaved with
+property value strings.  To indicate an "`@`" character at the start
+of a line in a property value, escape it by preceding it with a
+backslash.  Backslashes at the start of a line should also be escaped
+with a backslash.  These characters should not be escaped if they
+do not start in the first position in a line.
+
+<center>
+<table style="with:450px;">
+<tr valign=top>
+<td style="margin:10px;">
+ATON
+<pre style="height:270px;">
+This is a comment
+@ This is a comment
+@@@@This is a comment
+@key1: value1
+value1b
+\@value1c
+\\value1d
+@ This is a comment
+This is a comment
+
+@@START:key2
+@key2: value2
+@@END:key2
+
+This is a comment
+@key3: value3
+and @value3b
+</pre>
+</td>
+<td style="width:50px;"></td>
+<td style="margin:10px;">
+JavaScript object
+<pre style="height:270px;">
+{
+   key1: "value1\nvalue1b\n@value1c\n\\value1d",
+   key2: {"value2"},
+   key3: "value3\nand @value3b"
+}
+</td>
+</tr>
+</table>
+</center>
 
 
 ## Online conversion example
