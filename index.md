@@ -15,7 +15,7 @@ value, which may extend across multiple lines of text until the next
 @ marker at the start of a line.  Here is a simple example of an ATON file:
 
 <center>
-<table style="with:450px;;">
+<table style="with:450px;">
 <tr valign=top>
 <td style="margin:10px;">
 ATON
@@ -50,7 +50,7 @@ Nested properties can be represented by enclosing
 them in the meta tags "`@@START: property-name`" and "`@@END: property-name`":
 
 <center>
-<table style="with:450px;;">
+<table style="with:450px;">
 <tr valign=top>
 <td style="margin:10px;">
 ATON
@@ -83,7 +83,7 @@ JavaScript object
 </table>
 </center>
 
-Meta tags such as `@@START:` are case insenstive, so `@@start:` is equivalent.
+Meta tags such as `@@START:` are case insensitive, so `@@start:` is equivalent.
 In addition `@@BEGIN:` is an alias for `@@START:`, and `@@STOP:` is an
 alias for `@@END:`. Ending meta tags may optionally repeat the property name.  
 If so, then the name will be checked against the opening name, and an error 
@@ -97,7 +97,7 @@ values from multiple entries with the same name will be collected into
 an array:
 
 <center>
-<table style="with:450px;;">
+<table style="with:450px;">
 <tr valign=top>
 <td style="margin:10px;">
 ATON
@@ -239,6 +239,12 @@ cat file.json | json2aton
 
 
 ## Browser
+
+The [source code for ATON](https://github.com/craigsapp/ATON/blob/master/lib/aton.js)
+can be used in a web browser as well as in node.  A 
+[makefile](https://github.com/craigsapp/ATON/blob/master/lib/Makefile) in the
+[lib](https://github.com/craigsapp/ATON/tree/master/lib) directory also shows how to create a [minified version of the
+code](http://aton.sapp.org/javascripts/aton-0.0.0.min.js).
 
 The JavaScript files for ATON can also be used within
 a webpage by including the main JavaScript file for ATON:
