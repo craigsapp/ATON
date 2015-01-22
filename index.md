@@ -260,7 +260,8 @@ function loadAtonFile(filename) {
       var atondata = this.responseText;
       console.log("ATON data:", atondata);
       var aton = new ATON;
-      console.log("JavaScript object:", aton.parse(atondata));
+      var object = aton.parse(atondata);
+      console.log("JavaScript object:", object);
    });
    request.addEventListener('error', function() {
       console.error(this.statusText);
