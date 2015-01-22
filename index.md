@@ -2,17 +2,19 @@
 layout: index
 ---
 
+<span style="height:40px;"></span>
 
-ATON
-===============
+**ATON** stands for "AT Object Notation."  It has similar functionality
+to [JSON](http://en.wikipedia.org/wiki/JSON), with the main difference
+being that ATON property values are allowed to contain UN-escaped
+line breaks.
 
-ATON stands for "AT Object Notation."  It functions in a similar
-manner to JSON, the main difference being that property values are
-allowed to contain un-escaped line breaks in ATON property values.
-Property keys are indicated by starting a line with the "@" symbol,
-followed by the property name, then a colon (:) and then the property
-value, which may extend across multiple lines of text until the next
-@ marker at the start of a line.  Here is a simple example of an ATON file:
+Property names are indicated by starting a line with the "@" symbol,
+followed by the property name and then a colon (:). Property values
+follow the colon and may span multiple lines until the next property
+name or control message is found.
+
+Here is a simple example of an ATON file:
 
 <center>
 <table style="with:450px;">
@@ -23,6 +25,7 @@ ATON
 @key1: value1
 @key2: value2
 line2 of value2
+
 @key3: value3
 </pre>
 </td>
@@ -40,14 +43,22 @@ JavaScript object
 </table>
 </center>
 
-ATON Content is converted from a string into a JavaScript object
-with the `.parse()` method.  The process can be reversed by using the
-`.stringify()` method.  
+Notice that whitespace before and after the property value is
+automatically remove when parsing into a JavaScript object.  This
+can allow visual separation and grouping of parameters with blank
+lines as in the above example.  ATON strings are converted into a
+JavaScript object with the `ATON.parse()` method.  The process can
+be reversed by using the `ATON.stringify()` method.
 
-### Nested properties
 
-Nested properties can be represented by enclosing
-them in the meta tags "`@@START: property-name`" and "`@@END: property-name`":
+
+### Nested property lists
+
+Property values can themselves contain recursive lists of properties.
+The control tags "`@@START: *property-name*`" and "`@@END: *property-name*`"
+is used to indicate the beginning and ending points of the property list.
+In the following example, the "key2" property has a value which itself
+is a list of properties whose keys are "key2a", "key2b" and "key2c".
 
 <center>
 <table style="with:450px;">
@@ -83,18 +94,21 @@ JavaScript object
 </table>
 </center>
 
-Meta tags such as `@@START:` are case insensitive, so `@@start:` is equivalent.
-In addition `@@BEGIN:` is an alias for `@@START:`, and `@@STOP:` is an
-alias for `@@END:`. Ending meta tags may optionally repeat the property name.  
-If so, then the name will be checked against the opening name, and an error 
-will be generated if they do not match.  If the file ends without a matching `@@END:` tag, it will be inserted automatically.
+Control tags such as `@@START:` are case insensitive, so `@@start:`
+is equivalent.  In addition `@@BEGIN:` is an alias for `@@START:`,
+and `@@STOP:` is an alias for `@@END:`. Property names in ending
+control tags are optional: including them will force a check to
+ensure that the closing tag matches to an opening tag with the same
+name.  If the file ends without a matching `@@END:` tag, it will
+be inserted automatically.
 
 
-### Property arrays
 
-If a property name is repeated at any object level, then the individual
-values from multiple entries with the same name will be collected into
-an array:
+### Property value arrays
+
+If a property name is repeated in a specific object level, then the
+individual values from multiple entries with the same property name
+will be collected into a single array:
 
 <center>
 <table style="with:450px;">
@@ -129,10 +143,56 @@ JavaScript object
 </center>
 
 
+### Property value data types.
 
-## Online example
+By default all property values will be parsed as strings in JavaScript.
+The control message "`@@TYPE:tag:Number` will convert any properties
+which have the name *tag* into Numbers when parsing the ATON string.
+Likewise "`@@TYPE:tag:Integer` will convert the string to an Integer
+(by chopping off fractional values of floating point numbers.
+
+<center>
+<table style="with:450px;">
+<tr valign=top>
+<td style="margin:10px;">
+ATON
+<pre style="height:170px;">
+@TYPE:key2:Number
+@TYPE:key3:Integer
+@key1: 1
+@key2: 2.71828
+@key3: 3.14159
+</pre>
+</td>
+<td style="width:50px;"></td>
+<td style="margin:10px;">
+JavaScript object
+<pre style="height:170px;">
+{
+   key1: "1",
+   key2: 2.71828,
+   key3: 3
+}
+</td>
+</tr>
+</table>
+</center>
+
+The control name "TYPE" and the data types "Number" and "Integer"
+are case insensitive.  The case of the property tag must match that
+of the property name to which the type conversion will be applied.
+The type messages will (currently) act on properties at any
+hierarchical level.  You can change the typecast by inserting a
+type control message before any properties.  To cancel typecasting
+of a particular parameter name, use the control message
+"`@@TYPE:tag:String`".
+
+
+
+## Online conversion example
 
 {% include aton-test.html %}
+
 
 
 ## Using in Node applications
@@ -217,7 +277,7 @@ value3a continued further
 Whitespace before and after a parameter value is removed automatically
 during parsing.  Also notice that multi-line values contain an
 escaped newline character in the translation to a JavaScript object.
-Meta entries starting with "@@TYPE" set the data type for parameters
+Control entries starting with "@@TYPE" set the data type for parameters
 with a given name, such as "Number" to parse the property value as
 a number and "Integer" to parse as an integer.
 
