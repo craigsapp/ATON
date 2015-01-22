@@ -135,7 +135,7 @@ JavaScript object
 {% include aton-test.html %}
 
 
-## Usage in Node applications
+## Using in Node applications
 
 The ATON module can be installed for use in [node](http://nodejs.org) by
 installing globally with the command:
@@ -222,7 +222,7 @@ with a given name, such as "Number" to parse the property value as
 a number and "Integer" to parse as an integer.
 
 
-## Command-line
+## Using on the command-line
 
 There are two command-line interfaces to the ATON code:
 
@@ -238,7 +238,7 @@ cat file.json | json2aton
 ```
 
 
-## Browser
+## Using in a web browser
 
 The [source code for ATON](https://github.com/craigsapp/ATON/blob/master/lib/aton.js)
 can be used in a web browser as well as in node.  A 
