@@ -34,7 +34,7 @@ JavaScript object:
 
 
 More examples of the ATON syntax can be found on the 
-[ATON website](http://aton.sapp.org).  ATON Content is converted 
+[ATON website](http://aton.sapp.org).  ATON content is converted 
 from a string into a JavaScript object with the `.parse()` method.  The 
 process can be reversed by using the `.stringify()` method.
 
@@ -56,8 +56,8 @@ $ npm install --save aton
 ```
 
 Here is an example of loading the module into a node script and processing
-an ATON string.  This string contains most of the capabilities of
-ATON.
+an ATON string.  This string contains many of the capabilities of
+ATON, including type-casting and property hierarchies.
 
 * **key1** is a single-line value.
 * **key2** has a multi-line value, containing a literal newline.
@@ -113,7 +113,7 @@ value3a continued further
   key2: 'value2\nvalue2 continued',
   key3:
    { key3a: 'value3a\nvalue3a continued\nvalue3a continued further',
-     key3b: 'value3b',
+     key3b: 2.71828,
      key3c: [ 1, -45, 3 ] },
   key4: 'value4' }
 ```
