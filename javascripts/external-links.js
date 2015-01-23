@@ -22,7 +22,7 @@ function externalLinks(tabname) {
 	var links = document.querySelectorAll('a');
 	var i;
 	for (var i=0; i<links.length; i++) {
-		if (links[i].href.match(/^http?s:\/\//) {
+		if (links[i].href.match(/^http?s:\/\//)) {
 			links[i].target = tabname;
 		}
 	}
