@@ -112,7 +112,7 @@ will be collected into a single array:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:130px;">
+<pre style="height:150px;">
 @key1: value1
 @key2: value2a
 @key2: value2b
@@ -123,7 +123,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:130px;">
+<pre style="height:150px;">
 {
    key1: "value1",
    key2: 
@@ -196,7 +196,7 @@ example reads an array of integers
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:100px;">
+<pre style="height:90px;">
 @TYPE:key2:JSON
 @key1: 1
 @key2: [1,2,3]
@@ -206,7 +206,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:100px;">
+<pre style="height:90px;">
 {
    key1: "1",
    key2: [1, 2, 3],
@@ -225,7 +225,7 @@ not use an embedded JSON string:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:80px;">
+<pre style="height:90px;">
 @TYPE:key2:Number
 @key1: 1
 @key2: 1
@@ -237,7 +237,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:80px;">
+<pre style="height:90px;">
 {
    key1: "1",
    key2: [1, 2, 3],
