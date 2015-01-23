@@ -1,6 +1,6 @@
 {
   "name": "aton",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "AT Object Notation",
   "author": "Craig Stuart Sapp <craig@ccrma.stanford.edu>",
   "main": "index.js",

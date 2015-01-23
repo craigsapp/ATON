@@ -16,6 +16,8 @@
 #       yum install node       (Fedora linux)
 #
 
+.PHONY: test
+
 all:
 	@echo
 	@echo "make test   -- Run code tests"
