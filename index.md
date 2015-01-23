@@ -112,7 +112,7 @@ will be collected into a single array:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:150px;">
+<pre style="height:170px;">
 @key1: value1
 @key2: value2a
 @key2: value2b
@@ -123,7 +123,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:150px;">
+<pre style="height:170px;">
 {
    key1: "value1",
    key2: 
