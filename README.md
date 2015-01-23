@@ -2,11 +2,11 @@ ATON
 ===============
 
 ATON stands for "AT Object Notation."  It functions in a similar
-manner to JSON, the main difference is that property values are
-allowed to contain un-escaped line breaks in ATON property values.
-Property keys are indicated by starting a line with the "@" symbol,
-followed by the property name, then a colon (:) and then the property
-value.  Here is a simple example of an ATON file:
+manner to JSON, the main difference being that property values are
+allowed to contain unescaped line breaks in ATON.  Property keys
+are indicated by starting a line with the "@" symbol, followed by
+the property name, then a colon (:) and then the property value.
+Here is a simple example of an ATON file:
 
 <center>
 <table>
@@ -33,12 +33,13 @@ JavaScript object:
 </center>
 
 
-ATON Content is converted from a string into a JavaScript object
-with the `.parse()` method.  The process can be reversed by using the
-`.stringify()` method.
+More examples of the ATON syntax can be found on the 
+[ATON website](http://aton.sapp.org).  ATON Content is converted 
+from a string into a JavaScript object with the `.parse()` method.  
+The process can be reversed by using the `.stringify()` method.
 
 
-## Usage in Node applications
+## Using in Node applications
 
 This module can be installed for use in [node](http://nodejs.org) by
 installing globally with the command:
@@ -117,7 +118,7 @@ value3a continued further
   key4: 'value4' }
 ```
 
-Whitespace before an after a parameter value is removed automatically
+Whitespace before and after a parameter value is removed automatically
 during the conversion process.  Also notice that multi-line values
 contain an escaped newline character in the translation to a
 JavaScript object. Meta entries starting with "@@TYPE" set the data
@@ -125,7 +126,7 @@ type for parameters with a given name, such as "Number" to parse the
 property value as a number and "Integer" to parse as an integer.
 
 
-## Browser
+## Using in a web browser
 
 The JavaScript files for ATON can also be used within
 a webpage by including the main JavaScript file for ATON:
@@ -134,11 +135,11 @@ a webpage by including the main JavaScript file for ATON:
 <script src="aton.js"></script>
 ```
 
-Visit the [ATON homepage](http://aton.sapp.org) to try an online
+Visit the [ATON homepage](http://aton.sapp.org#online) to try an online
 demo of ATON parser running within a webpage.
 
 
-## Testing
+## Testing the code
 
 Input and output from the code can be tested using
 [mocha](http://mochajs.org) and the JavaScript files in the `test`
