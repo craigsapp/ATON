@@ -24,6 +24,7 @@ function externalLinks(tabname) {
 	for (var i=0; i<links.length; i++) {
 		if (links[i].href.match(/^http?s:\/\//)) {
 			links[i].target = tabname;
+			console.log("ADJUSTED" links[i]);
 		}
 	}
 }
