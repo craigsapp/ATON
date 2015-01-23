@@ -403,7 +403,9 @@ a number and "Integer" to parse as an integer.
 
 There are two command-line interfaces to the ATON code:
 
-* [aton2json](https://github.com/craigsapp/ATON/blob/master/example/cli/aton2json) &mdash; converts ATON files into JSON files.
+* [aton2json](https://github.com/craigsapp/ATON/blob/master/example/cli/aton2json) &mdash; converts ATON files into JSON files. Options:
+** -p &rarr; pretty-print JSON output.
+** -i string &rarr; indenting characters when pretty printing.
 * [json2aton](https://github.com/craigsapp/ATON/blob/master/example/cli/json2aton) &mdash; converts JSON files into ATON files.
 
 The input data can be piped into the programs, or it can be given through 
