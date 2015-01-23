@@ -18,7 +18,7 @@ simple example of an ATON file with three key/value pairs:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:100px;">
+<pre style="height:90px;">
 @key1: value1
 @key2: value2
 line2 of value2
@@ -29,7 +29,7 @@ line2 of value2
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:100px;">
+<pre style="height:90px;">
 {
    key1: "value1",
    key2: "value2\nline2 of value2",
@@ -153,7 +153,7 @@ Likewise "`@@TYPE:tag:Integer` will convert the string to an Integer
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:170px;">
+<pre style="height:120px;">
 @TYPE:key2:Number
 @TYPE:key3:Integer
 @key1: 1
@@ -164,7 +164,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:170px;">
+<pre style="height:120px;">
 {
    key1: "1",
    key2: 2.71828,
@@ -196,7 +196,7 @@ example reads an array of integers
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:170px;">
+<pre style="height:80px;">
 @TYPE:key2:JSON
 @key1: 1
 @key2: [1,2,3]
@@ -206,7 +206,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:170px;">
+<pre style="height:80px;">
 {
    key1: "1",
    key2: [1, 2, 3],
@@ -225,7 +225,7 @@ not use an embedded JSON string:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:170px;">
+<pre style="height:80px;">
 @TYPE:key2:Number
 @key1: 1
 @key2: 1
@@ -237,7 +237,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:170px;">
+<pre style="height:80px;">
 {
    key1: "1",
    key2: [1, 2, 3],
@@ -266,7 +266,7 @@ if they do not start in the first position in a line.
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:360px;">
+<pre style="height:330px;">
 This is a bad comment
 @ This is a good comment
 @@@@This is a comment
@@ -289,7 +289,7 @@ and @value3b
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:360px;">
+<pre style="height:330px;">
 {
    key1: "value1\nvalue1b\n@value1c\n\\value1d",
    key2: {"value2"},
