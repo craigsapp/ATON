@@ -189,15 +189,12 @@ of a particular parameter name, use the control message
 
 Comments are lines which start with "`@`" but are not property names
 or control messages.  The "`@`" character should be followed by a
-space or at least three more "`@`" characters.  In addition, any
-free text following a control message line will be treated as a
-comment.  Any free text after a comment is also a comment.  In other
-words, comments and control messages cannot be interleaved with
-property value strings.  To indicate an "`@`" character at the start
-of a line in a property value, escape it by preceding it with a
-backslash.  Backslashes at the start of a line should also be escaped
-with a backslash.  These characters should not be escaped if they
-do not start in the first position in a line.
+space or at least three more "`@`" characters.  Comments can interrupt
+multi-line property values.  To indicate an "`@`" character at the
+start of a line in a property value, escape it by preceding it with
+a backslash.  Backslashes at the start of a line should also be
+escaped with a backslash.  These characters should not be escaped
+if they do not start in the first position in a line.
 
 <center>
 <table style="with:450px;">
@@ -205,25 +202,23 @@ do not start in the first position in a line.
 <td style="margin:10px;">
 ATON
 <pre style="height:360px;">
-This is a comment
-@ This is a comment
+This is a bad comment
+@ This is a good comment
 @@@@This is a comment
 @key1: value1
 value1b
 \@value1c
 \\value1d
 @ This is a comment
-This is a comment
  &nbsp;
 @@START:key2
 @key2: value2
 @@END:key2
+This is an OK comment
  &nbsp;
-This is a comment
 @key3: value3
+@ interrupting comment
 and @value3b
-@
-This is a comment
 </pre>
 </td>
 <td style="width:50px;"></td>
@@ -240,6 +235,11 @@ JavaScript object
 </table>
 </center>
 
+Free text at the start of an ATON file is technically a comment
+since it is not associated with a property name.  But if files are 
+concatenated together, the comments may become attached to the
+last property in the previous file.  Free text after an "`@@END:`"
+control message will also be interpreted as a comment.
 
 ## Online conversion example
 
