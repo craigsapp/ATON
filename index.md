@@ -187,7 +187,7 @@ of a particular parameter name, use the control message
 
 #### embedded JSON string parsing
 
-The "`@@TYPER:tag:JSON`" control message will cause all property names matching
+The "`@@TYPE:tag:JSON`" control message will cause all property names matching
 "`tag`" to be interpreted as a JSON string and parsed as such.  The following
 example reads an array of integers
 
