@@ -42,7 +42,7 @@ JavaScript object
 </center>
 
 Notice that any whitespace before or after a property value is
-automatically remove when parsing into a JavaScript object.  This
+automatically removed when parsing into a JavaScript object.  This
 can allow visual separation and grouping of parameters with blank
 lines as in the above example.  ATON strings are converted into a
 JavaScript object with the `ATON.parse()` method.  The process can
