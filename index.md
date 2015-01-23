@@ -6,7 +6,7 @@ layout: index
 
 **ATON** stands for "AT Object Notation."  It has similar functionality
 to [JSON](http://en.wikipedia.org/wiki/JSON), with the main difference
-being that ATON property values are allowed to contain UN-escaped
+being that ATON property values are allowed to contain un-escaped
 line breaks.  Property names are indicated by starting a line with
 the "@" symbol, followed by the property name and then a colon (:).
 Property values follow the colon and may span multiple lines until
