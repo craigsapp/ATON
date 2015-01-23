@@ -246,6 +246,41 @@ it('Create nested object property',
 
 
 });
+describe('Comment behavior tests', function () {
+
+
+it('Test free-text comment at start of file',
+	function () {
+		var aton = new ATON();
+		var test = 'a comment\n@@BEGIN:A\n@@BEGIN:B\n@X:x\n@@END:B\n@@END:A';
+		var target = '{"A":{"B":{"X":"x"}}}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Test regular comment splitting a multi-line value',
+	function () {
+		var aton = new ATON();
+		var test = '@@BEGIN:A\n@@BEGIN:B\n@X:x\n@ comment\ny\n@@END:B\n@@END:A';
+		var target = '{"A":{"B":{"X":"x\\ny"}}}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Test free-text commen after @@END marker',
+	function () {
+		var aton = new ATON();
+		var test = '@@BEGIN:A\n@@BEGIN:B\n@X:x\n@@END:B\ncomment\n@@END:A';
+		var target = '{"A":{"B":{"X":"x"}}}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+
+});
 });
 describe('Advanced parsing tests', function() {
 describe('Typecasting parameters', function() {
@@ -286,6 +321,16 @@ it('Testing ignore case on typecast control message',
 		var aton = new ATON();
 		var test = '@@TYPE:X:InTeGeR\n@@BEGIN:A\n@X:23.95\n@@END:A';
 		var target = '{"A":{"X":23}}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Testing typecast of JSON string',
+	function () {
+		var aton = new ATON();
+		var test = '@@TYPE:X:JSON\n@@BEGIN:A\n@X:[1,2,3,4]\n@@END:A';
+		var target = '{"A":{"X":[1,2,3,4]}}';
 		var result = aton.parse(test);
 		assert.deepEqual(target, JSON.stringify(result));
 	}
