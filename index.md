@@ -18,7 +18,7 @@ simple example of an ATON file with three key/value pairs:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:90px;">
+<pre style="height:80px;">
 @key1: value1
 @key2: value2
 line2 of value2
@@ -29,7 +29,7 @@ line2 of value2
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:90px;">
+<pre style="height:80px;">
 {
    key1: "value1",
    key2: "value2\nline2 of value2",
@@ -112,7 +112,7 @@ will be collected into a single array:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:170px;">
+<pre style="height:130px;">
 @key1: value1
 @key2: value2a
 @key2: value2b
@@ -123,7 +123,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:170px;">
+<pre style="height:130px;">
 {
    key1: "value1",
    key2: 
@@ -196,7 +196,7 @@ example reads an array of integers
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:80px;">
+<pre style="height:100px;">
 @TYPE:key2:JSON
 @key1: 1
 @key2: [1,2,3]
@@ -206,7 +206,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:80px;">
+<pre style="height:100px;">
 {
    key1: "1",
    key2: [1, 2, 3],
