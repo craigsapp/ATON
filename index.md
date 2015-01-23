@@ -153,9 +153,9 @@ Likewise "`@@TYPE:tag:Integer` will convert the string to an Integer
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:120px;">
-@TYPE:key2:Number
-@TYPE:key3:Integer
+<pre style="height:100px;">
+@@TYPE:key2:Number
+@@TYPE:key3:Integer
 @key1: 1
 @key2: 2.71828
 @key3: 3.14159
@@ -164,7 +164,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:120px;">
+<pre style="height:100px;">
 {
    key1: "1",
    key2: 2.71828,
@@ -197,7 +197,7 @@ example reads an array of integers
 <td style="margin:10px;">
 ATON
 <pre style="height:90px;">
-@TYPE:key2:JSON
+@@TYPE:key2:JSON
 @key1: 1
 @key2: [1,2,3]
 @key3: 3
@@ -225,8 +225,8 @@ not use an embedded JSON string:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:90px;">
-@TYPE:key2:Number
+<pre style="height:100px;">
+@@TYPE:key2:Number
 @key1: 1
 @key2: 1
 @key2: 2
@@ -237,7 +237,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:90px;">
+<pre style="height:100px;">
 {
    key1: "1",
    key2: [1, 2, 3],
@@ -404,8 +404,8 @@ a number and "Integer" to parse as an integer.
 There are two command-line interfaces to the ATON code:
 
 * [aton2json](https://github.com/craigsapp/ATON/blob/master/example/cli/aton2json) &mdash; converts ATON files into JSON files. Options:
- * -p &rarr; pretty-print JSON output.
- * -i string &rarr; indenting characters when pretty printing.
+ * __-p__ &rarr; pretty-print JSON output.
+ * __-i *string*__ &rarr; indenting characters when pretty printing.
 * [json2aton](https://github.com/craigsapp/ATON/blob/master/example/cli/json2aton) &mdash; converts JSON files into ATON files.
 
 The input data can be piped into the programs, or it can be given through 
