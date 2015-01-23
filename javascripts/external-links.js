@@ -13,7 +13,7 @@
 
 window.addEventListener('load', function () {
 	externalLinks('new');
-}
+});
 
 function externalLinks(tabname) {
 	if (!tabname) {
