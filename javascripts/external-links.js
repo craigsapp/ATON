@@ -25,6 +25,8 @@ function externalLinks(tabname) {
 		if (links[i].href.match(/^http?s:\/\//)) {
 			links[i].target = tabname;
 			console.log("ADJUSTED", links[i]);
+		} else {
+			console.log("SKIPPING", links[i]);
 		}
 	}
 }
