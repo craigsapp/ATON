@@ -4,9 +4,10 @@ layout: index
 
 <span style="height:40px;"></span>
 
-**ATON** stands for "AT Object Notation."  It has similar functionality
-to [JSON](http://en.wikipedia.org/wiki/JSON), with the main difference
-being that ATON property values are allowed to contain un-escaped
+<span style="font-weight:900; letter-spacing:2px;">ATON</span>
+stands for "AT Object Notation."  It has similar functionality to
+[JSON](http://en.wikipedia.org/wiki/JSON), with the main difference
+being that ATON property values are allowed to contain unescaped
 line breaks.  Property names are indicated by starting a line with
 the "@" symbol, followed by the property name and then a colon (:).
 Property values follow the colon and may span multiple lines until
@@ -18,18 +19,18 @@ simple example of an ATON file with three key/value pairs:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:80px;">
+<pre style="height:90px;">
 @key1: value1
 @key2: value2
 line2 of value2
-&nbsp; 
+&nbsp;
 @key3: value3
 </pre>
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:80px;">
+<pre style="height:90px;">
 {
    key1: "value1",
    key2: "value2\nline2 of value2",
@@ -62,7 +63,7 @@ is a list of properties whose keys are "`key2a`", "`key2b`" and "`key2c`".
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:170px;">
+<pre style="height:180px;">
 @key1: value1
 @@START: key2
 @key2a: value2a
@@ -75,10 +76,10 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:170px;">
+<pre style="height:180px;">
 {
    key1: "value1",
-   key2: 
+   key2:
    {
       key2a: "value2a",
       key2b: "value2b",
@@ -112,7 +113,7 @@ will be collected into a single array:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:170px;">
+<pre style="height:180px;">
 @key1: value1
 @key2: value2a
 @key2: value2b
@@ -123,10 +124,10 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:170px;">
+<pre style="height:180px;">
 {
    key1: "value1",
-   key2: 
+   key2:
    [
       "value2a",
       "value2b",
@@ -175,9 +176,9 @@ JavaScript object
 </table>
 </center>
 
-The control name "TYPE" and the data types "Number" and "Integer"
-are case insensitive.  The case of the property tag must match that
-of the property name to which the type conversion will be applied.
+The "`TYPE`" control message and the data types, such as "`Number`" and
+"`Integer`", are case insensitive.  The case of the property tag must match
+that of the property name to which the type conversion will be applied.
 The type messages will (currently) act on properties at any
 hierarchical level.  You can change the type-cast by inserting a
 type control message before any properties.  To cancel type-casting
@@ -225,7 +226,7 @@ not use an embedded JSON string:
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:100px;">
+<pre style="height:110px;">
 @@TYPE:key2:Number
 @key1: 1
 @key2: 1
@@ -237,7 +238,7 @@ ATON
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:100px;">
+<pre style="height:110px;">
 {
    key1: "1",
    key2: [1, 2, 3],
@@ -301,7 +302,7 @@ JavaScript object
 </center>
 
 Free text at the start of an ATON file is technically a comment
-since it is not associated with a property name.  But if files are 
+since it is not associated with a property name.  But if files are
 concatenated together, the comments may become attached to the
 last property in the previous file.  Free text after an "`@@END:`"
 control message will also be interpreted as a comment.
@@ -408,7 +409,7 @@ There are two command-line interfaces to the ATON code:
  * __-i *string*__ &rarr; indenting characters when pretty printing.
 * [json2aton](https://github.com/craigsapp/ATON/blob/master/example/cli/json2aton) &mdash; converts JSON files into ATON files.
 
-The input data can be piped into the programs, or it can be given through 
+The input data can be piped into the programs, or it can be given through
 a filename in the command-line arguments list:
 
 ``` bash
@@ -419,10 +420,12 @@ cat file.json | json2aton
 
 ## Using in a web browser
 
-The [source code for ATON](https://github.com/craigsapp/ATON/blob/master/lib/aton.js)
-can be used in a web browser as well as in node.  A 
-[makefile](https://github.com/craigsapp/ATON/blob/master/lib/Makefile) in the
-[lib](https://github.com/craigsapp/ATON/tree/master/lib) directory also shows how to create a [minified version of the
+The [source code for
+ATON](https://github.com/craigsapp/ATON/blob/master/lib/aton.js)
+can be used in a web browser as well as in node.  A
+[makefile](https://github.com/craigsapp/ATON/blob/master/lib/Makefile) in
+the [lib](https://github.com/craigsapp/ATON/tree/master/lib) directory
+also shows how to create a [minified version of the
 code](http://aton.sapp.org/javascripts/aton.min.js).
 
 The JavaScript files for ATON can also be used within
