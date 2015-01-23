@@ -42,8 +42,18 @@ var fs    = require('fs');
 	var args = pap.create();
 	var v    = pap.validators;
 
+	args.createOption(['-p', '--pretty'], {
+		signature: 'Pretty-print JSON output'
+	});
+
+	args.createOption(['-i', '--indent'], {
+		signature: 'Indenting string for JSON pretty printer',
+		hasValue: true,
+		defaultValue: '   '
+	});
+
 	args.createOperand('files', {
-		signature: 'input files',
+		signature: 'Input files',
 		greedy: true,
 		validators: [v.file()]
 	});
@@ -54,7 +64,9 @@ var fs    = require('fs');
 			process.exit(1);
 		}
 		var myoptions = {
-			files  : options.files.value
+			files   : options.files.value,
+			pretty  : options['--pretty'].isSet,
+			indent  : options['--indent'].value
 		};
 		runCommand(myoptions);
 	});
@@ -146,7 +158,12 @@ function processFile(filename, options) {
 function processFileContents(data, options) {
 	var ATON = new aton;
 	var object = ATON.parse(data);
-	var json = JSON.stringify(object);
+	var json;
+	if (options.pretty) {
+		json = JSON.stringify(object, null, options.indent);
+	} else {
+		json = JSON.stringify(object);
+	}
 	console.log(json);
 }
 

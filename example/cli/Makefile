@@ -12,7 +12,6 @@ all: test1 test2 test3 test4
 aton2json: test1 test2
 json2aton: test3 test4
 
-
 test1:
 	./aton2json test.aton
 
@@ -24,5 +23,9 @@ test3:
 
 test4:
 	cat test.json | ./json2aton
+
+install:
+	cp aton2json /usr/local/bin
+	cp json2aton /usr/local/bin
 
 
