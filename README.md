@@ -35,8 +35,8 @@ JavaScript object:
 
 More examples of the ATON syntax can be found on the 
 [ATON website](http://aton.sapp.org).  ATON Content is converted 
-from a string into a JavaScript object with the `.parse()` method.  
-The process can be reversed by using the `.stringify()` method.
+from a string into a JavaScript object with the `.parse()` method.  The 
+process can be reversed by using the `.stringify()` method.
 
 
 ## Using in Node applications
