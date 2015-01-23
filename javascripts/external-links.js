@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
 
 function externalLinks(tabname) {
 	if (!tabname) {
-		tabname = "new";
+		tabname = 'new';
 	}
 	var links = document.querySelectorAll('a');
 	var i;

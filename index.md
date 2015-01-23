@@ -292,7 +292,7 @@ JavaScript object
 <pre style="height:330px;">
 {
    key1: "value1\nvalue1b\n@value1c\n\\value1d",
-   key2: {"value2"},
+   key2: { key2: "value2"},
    key3: "value3\nand @value3b"
 }
 </td>
