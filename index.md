@@ -185,6 +185,71 @@ of a particular parameter name, use the control message
 "`@@TYPE:tag:String`".
 
 
+#### embedded JSON string parsing
+
+The "`@@TYPER:tag:JSON`" control message will cause all property names matching
+"`tag`" to be interpreted as a JSON string and parsed as such.  The following
+example reads an array of integers
+
+<center>
+<table style="with:150px;">
+<tr valign=top>
+<td style="margin:10px;">
+ATON
+<pre style="height:170px;">
+@TYPE:key2:JSON
+@key1: 1
+@key2: [1,2,3]
+@key3: 3
+</pre>
+</td>
+<td style="width:50px;"></td>
+<td style="margin:10px;">
+JavaScript object
+<pre style="height:170px;">
+{
+   key1: "1",
+   key2: [1, 2, 3],
+   key3: "3"
+}
+</td>
+</tr>
+</table>
+</center>
+
+The above ATON data is equivalent to the following example which does
+not use an embedded JSON string:
+
+<center>
+<table style="with:150px;">
+<tr valign=top>
+<td style="margin:10px;">
+ATON
+<pre style="height:170px;">
+@TYPE:key2:Number
+@key1: 1
+@key2: 1
+@key2: 2
+@key2: 3
+@key3: 3
+</pre>
+</td>
+<td style="width:50px;"></td>
+<td style="margin:10px;">
+JavaScript object
+<pre style="height:170px;">
+{
+   key1: "1",
+   key2: [1, 2, 3],
+   key3: "3"
+}
+</td>
+</tr>
+</table>
+</center>
+
+
+
 ### Comments
 
 Comments are lines which start with "`@`" but are not property names
