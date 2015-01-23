@@ -204,7 +204,7 @@ do not start in the first position in a line.
 <tr valign=top>
 <td style="margin:10px;">
 ATON
-<pre style="height:320px;">
+<pre style="height:340px;">
 This is a comment
 @ This is a comment
 @@@@This is a comment
@@ -229,7 +229,7 @@ This is a comment
 <td style="width:50px;"></td>
 <td style="margin:10px;">
 JavaScript object
-<pre style="height:320px;">
+<pre style="height:340px;">
 {
    key1: "value1\nvalue1b\n@value1c\n\\value1d",
    key2: {"value2"},
