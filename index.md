@@ -8,7 +8,7 @@ layout: index
 stands for "AT Object Notation."  It has similar functionality to
 [JSON](http://en.wikipedia.org/wiki/JSON), with the main difference
 being that ATON property values are allowed to contain unescaped
-line breaks.  ATON file may also contain <a href=#comments>comments</a>.
+line breaks. &nbsp;ATON files may also contain <a href=#comments>comments</a>.
 
 Property names are indicated by starting a line with the "`@`" symbol,
 followed by the property name and then a colon (`:`).  Property values
