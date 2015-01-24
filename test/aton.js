@@ -338,6 +338,30 @@ it('Testing typecast of JSON string',
 
 
 });
+describe('Arrays of objects', function() {
+
+it('Testing typecast of JSON string',
+	function () {
+		var aton = new ATON();
+		var test = '@@BEGIN:X\n@x:v1\n@@END:X\n@@BEGIN:X\n@x:v2\n@@END:X\n@@BEGIN:X\n@x:v3\n@@END:X\n';
+		var target = '{"X":[{"x":"v1"},{"x":"v2"},{"x":"v3"}]}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Complicated array/object interaction',
+	function () {
+		var aton = new ATON();
+		var test = '@@BEGIN:X\n@x:v1\n@@END:X\n@@BEGIN:X\n@x:v2\n@@BEGIN:Y\n@y:w1\n@@END:Y\n@@BEGIN:Y\n@y:w2\n@@END:Y\n@@BEGIN:Y\n@y:w3\n@@END:Y\n@x:v3\n@@END:X\n@@BEGIN:X\n@x:v4\n@@END:X\n';
+		var target = '{"X":[{"x":"v1"},{"x":["v2","v3"],"Y":[{"y":"w1"},{"y":"w2"},{"y":"w3"}]},{"x":"v4"}]}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+
+});
 });
 
 
