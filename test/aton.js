@@ -154,7 +154,7 @@ it('Remove starting and ending whitespaces on multi-line value',
 	}
 );
 
-it('Don\'t removed intermediate whitespace',
+it('Don\'t remove intermediate whitespace',
 	function () {
 		var aton = new ATON();
 		var test = '@A:\n\t b \n\tc\n \t';
@@ -279,6 +279,26 @@ it('Test free-text commen after @@END marker',
 	}
 );
 
+it('Ignore comments after single-line parameters.',
+	function () {
+		var aton = new ATON();
+		var test = '@A:a\n@ comment\n@B:b\n';
+		var target = '{"A":"a","B":"b"}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Ignore comments after multi-line parameters.',
+	function () {
+		var aton = new ATON();
+		var test = '@A:a\na2\n@ comment\n@B:b\n';
+		var target = '{"A":"a\\na2","B":"b"}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
 
 });
 });
@@ -355,6 +375,72 @@ it('Complicated array/object interaction',
 		var aton = new ATON();
 		var test = '@@BEGIN:X\n@x:v1\n@@END:X\n@@BEGIN:X\n@x:v2\n@@BEGIN:Y\n@y:w1\n@@END:Y\n@@BEGIN:Y\n@y:w2\n@@END:Y\n@@BEGIN:Y\n@y:w3\n@@END:Y\n@x:v3\n@@END:X\n@@BEGIN:X\n@x:v4\n@@END:X\n';
 		var target = '{"X":[{"x":"v1"},{"x":["v2","v3"],"Y":[{"y":"w1"},{"y":"w2"},{"y":"w3"}]},{"x":"v4"}]}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+
+});
+describe('Manipulating property name cases', function() {
+
+it('Testing converting property names to lower case',
+	function () {
+		var aton = new ATON();
+		aton.setLCKeys();
+		var test = '@X:1\n';
+		var target = '{"x":"1"}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Testing converting property names to upper case',
+	function () {
+		var aton = new ATON();
+		aton.setUCKeys();
+		var test = '@x:1\n';
+		var target = '{"X":"1"}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Testing converting property names to same case',
+	function () {
+		var aton = new ATON();
+		aton.setUCKeys();
+		aton.setOCKeys();
+		var test = '@x:1\n';
+		var target = '{"x":"1"}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Testing type-casting when converting property names to lower case',
+	function () {
+		var aton = new ATON();
+		aton.setLCKeys();
+		// The defintion TYPE:X:Number should be used in this case since the 
+		// original parameter is capital, eventhough it will be converted by the
+		// parser into lower case due to aton.setLCKeys() being run.  In other
+		// words, the original data does not know about the options set by the
+		// parser, so it would be bad for the parser options to affect the 
+		// actions of the type-casting.
+		var test = '@@TYPE:X:Number\n@@TYPE:x:Integer\n@X:1.23\n';
+		var target = '{"x":1.23}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Testing type-casting when converting property names to upper case',
+	function () {
+		var aton = new ATON();
+		aton.setUCKeys();
+		var test = '@@TYPE:x:Number\n@@TYPE:X:Integer\n@x:1.23\n';
+		var target = '{"X":1.23}';
 		var result = aton.parse(test);
 		assert.deepEqual(target, JSON.stringify(result));
 	}
