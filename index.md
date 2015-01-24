@@ -8,11 +8,13 @@ layout: index
 stands for "AT Object Notation."  It has similar functionality to
 [JSON](http://en.wikipedia.org/wiki/JSON), with the main difference
 being that ATON property values are allowed to contain unescaped
-line breaks.  Property names are indicated by starting a line with
-the "@" symbol, followed by the property name and then a colon (:).
-Property values follow the colon and may span multiple lines until
-the next property name or control message is found.  Here is a
-simple example of an ATON file with three key/value pairs:
+line breaks.  ATON file may also contain <a name=#comments>comments</a>.
+
+Property names are indicated by starting a line with the "`@`" symbol,
+followed by the property name and then a colon (`:`).  Property values
+follow the colon and may span multiple lines until the next property
+name or control message is found.  Here is a simple example of an
+ATON file with three key/value pairs:
 
 <center>
 <table style="with:450px;">
@@ -251,6 +253,7 @@ JavaScript object
 
 
 
+<a name=comments> </a>
 ### Comments
 
 Comments are lines which start with "`@`" but are not property names
