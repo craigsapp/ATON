@@ -384,6 +384,7 @@ it('Complicated array/object interaction',
 });
 describe('Manipulating property name cases', function() {
 
+
 it('Testing converting property names to lower case',
 	function () {
 		var aton = new ATON();
@@ -441,6 +442,51 @@ it('Testing type-casting when converting property names to upper case',
 		aton.setUCKeys();
 		var test = '@@TYPE:x:Number\n@@TYPE:X:Integer\n@x:1.23\n';
 		var target = '{"X":1.23}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+
+});
+describe('Testing escape characters', function() {
+
+
+it('Escape @ charcter in multi line value',
+	function () {
+		var aton = new ATON();
+		var test = '@x:y\n\\@z\n';
+		var target = '{"x":"y\\n@z"}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Not escaping @ charcter in multi line value',
+	function () {
+		var aton = new ATON();
+		var test = '@x:y\n@z\n';
+		var target = '{"x":"y"}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Single backslash',
+	function () {
+		var aton = new ATON();
+		var test = '@x:\\\n';
+		var target = '{"x":"\\\\"}';
+		var result = aton.parse(test);
+		assert.deepEqual(target, JSON.stringify(result));
+	}
+);
+
+it('Escape \@ charcters in multi line value',
+	function () {
+		var aton = new ATON();
+		var test = '@x:y\n\\\\@z\n';
+		var target = '{"x":"y\\n\\\\@z"}';
 		var result = aton.parse(test);
 		assert.deepEqual(target, JSON.stringify(result));
 	}
