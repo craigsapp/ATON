@@ -1,7 +1,7 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Fri Jan  9 22:05:11 PST 2015
 // Last Modified: Fri Jan  9 22:05:13 PST 2015
-// Filename:      .../test/ATON.js
+// Filename:      test/aton.js
 // Syntax:        JavaScript 1.8.5/ECMAScript 5.1, Node 0.10
 // vim:           ts=3
 //
