@@ -31,12 +31,12 @@ line2 of value2
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object
+JSON
 <pre style="height:90px;">
 {
-   key1: "value1",
-   key2: "value2\nline2 of value2",
-   key3: "value3"
+   "key1": "value1",
+   "key2": "value2\nline2 of value2",
+   "key3": "value3"
 }
 </td>
 </tr>
@@ -44,8 +44,8 @@ JavaScript object
 </center>
 
 Notice that any whitespace before or after a property value is
-automatically removed when parsing into a JavaScript object.  This
-can allow visual separation and grouping of parameters with blank
+automatically removed when parsing into a JavaScript object/JSON string.
+This can allow visual separation and grouping of parameters with blank
 lines as in the above example.  ATON strings are converted into a
 JavaScript object with the `ATON.parse()` method.  The process can
 be reversed by using the `ATON.stringify()` method.
@@ -77,17 +77,17 @@ ATON
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object
+JSON
 <pre style="height:180px;">
 {
-   key1: "value1",
-   key2:
+   "key1": "value1",
+   "key2":
    {
-      key2a: "value2a",
-      key2b: "value2b",
-      key2c: "value2c"
+      "key2a": "value2a",
+      "key2b": "value2b",
+      "key2c": "value2c"
    }
-   key3: "value3"
+   "key3": "value3"
 }
 </td>
 </tr>
@@ -125,17 +125,17 @@ ATON
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object
+JSON
 <pre style="height:180px;">
 {
-   key1: "value1",
-   key2:
+   "key1": "value1",
+   "key2":
    [
       "value2a",
       "value2b",
       "value2c"
    ]
-   key3: "value3"
+   "key3": "value3"
 }
 </td>
 </tr>
@@ -166,12 +166,12 @@ ATON
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object
+JSON
 <pre style="height:100px;">
 {
-   key1: "1",
-   key2: 2.71828,
-   key3: 3
+   "key1": "1",
+   "key2": 2.71828,
+   "key3": 3
 }
 </td>
 </tr>
@@ -208,12 +208,12 @@ ATON
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object
+JSON
 <pre style="height:90px;">
 {
-   key1: "1",
-   key2: [1, 2, 3],
-   key3: "3"
+   "key1": "1",
+   "key2": [1, 2, 3],
+   "key3": "3"
 }
 </td>
 </tr>
@@ -239,12 +239,12 @@ ATON
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object
+JSON
 <pre style="height:110px;">
 {
-   key1: "1",
-   key2: [1, 2, 3],
-   key3: "3"
+   "key1": "1",
+   "key2": [1, 2, 3],
+   "key3": "3"
 }
 </td>
 </tr>
@@ -292,12 +292,12 @@ and @value3b
 </td>
 <td style="width:50px;"></td>
 <td style="margin:10px;">
-JavaScript object
+JSON
 <pre style="height:330px;">
 {
-   key1: "value1\nvalue1b\n@value1c\n\\value1d",
-   key2: { key2: "value2"},
-   key3: "value3\nand @value3b"
+   "key1": "value1\nvalue1b\n@value1c\n\\value1d",
+   "key2": { key2: "value2"},
+   "key3": "value3\nand @value3b"
 }
 </td>
 </tr>
